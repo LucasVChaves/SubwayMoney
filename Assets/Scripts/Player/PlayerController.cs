@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour {
             vVelocity = Mathf.Sqrt(jumpForce * -2f * gravity);
             isGrounded = false;
             state = PlayerState.Jumping;
+            Debug.Log("State = " + state);
         }
 
         // cancelamento do pulo
