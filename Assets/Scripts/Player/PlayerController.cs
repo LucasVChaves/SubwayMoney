@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour {
     void FixedUpdate() {
         HandleMovement();
     }
-
+/*
     void ProcessInput() {
         // movimentacao lateral
         if (Keyboard.current.aKey.wasPressedThisFrame || Keyboard.current.leftArrowKey.wasPressedThisFrame) {
@@ -99,4 +99,67 @@ public class PlayerController : MonoBehaviour {
             transform.position = pos;
         }
     }
+    */
+    void ProcessInput() {
+    // Movimentação lateral
+    if (Keyboard.current.aKey.wasPressedThisFrame || Keyboard.current.leftArrowKey.wasPressedThisFrame) {
+        if (currLane > 0) {
+            currLane--;
+            targetPos.x = lanePos[currLane];
+        }
+    }
+    if (Keyboard.current.dKey.wasPressedThisFrame || Keyboard.current.rightArrowKey.wasPressedThisFrame) {
+        if (currLane < 2) {
+            currLane++;
+            targetPos.x = lanePos[currLane];
+        }
+    }
+
+    // Pulo
+    if (isGrounded && (Keyboard.current.wKey.wasPressedThisFrame || Keyboard.current.upArrowKey.wasPressedThisFrame)) {
+        Debug.Log("Jump");
+        vVelocity = Mathf.Sqrt(jumpForce * -2f * gravity);
+        isGrounded = false;
+        state = PlayerState.Jumping;
+        Debug.Log("State = " + state);
+    }
+
+    // Cancelamento do pulo (fast fall)
+    if (!isGrounded && (Keyboard.current.sKey.wasPressedThisFrame || Keyboard.current.downArrowKey.wasPressedThisFrame)) {
+        if (vVelocity > 0) {
+            vVelocity = 0f; // cancela a subida imediatamente
+        }
+        state = PlayerState.Rolling;
+    }
+}
+
+void HandleMovement() {
+    Vector3 newPosition = transform.position;
+    newPosition.x = Mathf.Lerp(newPosition.x, targetPos.x, hLerpSpeed * Time.fixedDeltaTime);
+
+    // Aplica multiplicador de queda rápida se estiver no estado de Rolling
+    float currentGravity = gravity;
+    if (state == PlayerState.Rolling && vVelocity <= 0) {
+        currentGravity *= fastFallMultiplier;
+    }
+
+    // Aplica gravidade em qualquer situação (grounded ou não)
+    vVelocity += currentGravity * Time.fixedDeltaTime;
+
+    // Aplica movimento vertical
+    newPosition.y += vVelocity * Time.fixedDeltaTime;
+
+    // Checa colisão com o chão
+    if (newPosition.y <= groundLevel) {
+        newPosition.y = groundLevel;
+        isGrounded = true;
+        vVelocity = 0f;
+        state = PlayerState.Running;
+    } else {
+        isGrounded = false;
+    }
+
+    transform.position = newPosition;
+}
+
 }
