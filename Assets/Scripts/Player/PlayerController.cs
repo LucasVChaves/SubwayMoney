@@ -69,8 +69,8 @@ public class PlayerController : MonoBehaviour {
 
         // Cancelamento do pulo (fast fall)
         if (!isGrounded && (Keyboard.current.sKey.wasPressedThisFrame || Keyboard.current.downArrowKey.wasPressedThisFrame)) {
-            if (vVelocity > 0) {
-                vVelocity = 0f; // cancela a subida imediatamente
+            if (vVelocity != 0) {
+                vVelocity = gravity;
             }
             state = PlayerState.Rolling;
         }
