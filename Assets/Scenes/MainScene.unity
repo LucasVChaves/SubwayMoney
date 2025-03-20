@@ -1251,6 +1251,7 @@ MonoBehaviour:
   minX: -2
   maxX: 2
   trainSpeed: 15
+  trainRotation: 90
   coinPrefab: {fileID: 1914703092}
   coinSpawnChance: 0.5
   coinHeight: 1.5

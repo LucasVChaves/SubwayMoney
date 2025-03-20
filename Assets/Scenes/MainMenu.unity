@@ -450,7 +450,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb660057cf538dd468caa1eb03409802, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainSceneName: TestScene
+  mainSceneName: MainScene
 --- !u!1 &289840191
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,9 +711,9 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 305fa0abd52bec047bdab7f7931f23b0, type: 3}
   m_Resource: {fileID: 8300000, guid: 305fa0abd52bec047bdab7f7931f23b0, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.8
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1579,7 +1579,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 413848, guid: 93f8a13fb89985e4f8d0d8ecff94969a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.9
+      value: -16.45
       objectReference: {fileID: 0}
     - target: {fileID: 413848, guid: 93f8a13fb89985e4f8d0d8ecff94969a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1587,7 +1587,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 413848, guid: 93f8a13fb89985e4f8d0d8ecff94969a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10.04
+      value: 10.89
       objectReference: {fileID: 0}
     - target: {fileID: 413848, guid: 93f8a13fb89985e4f8d0d8ecff94969a, type: 3}
       propertyPath: m_LocalRotation.w
