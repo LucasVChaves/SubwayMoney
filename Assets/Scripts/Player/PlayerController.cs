@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour {
     private float[] lanePos;
     
     [Header("Movimento do Player")]
-    public float jumpForce = 1000f;
+    public float jumpForce = 600f;
     public float gravity = -9.81f;
     public float fastFallMultiplier = 2f;
     public float hLerpSpeed = 10f;
