@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -25,6 +26,8 @@ public class PlayerController : MonoBehaviour {
 
     private Vector3 targetPos;
 
+    private Animator animator;
+
     private PlayerState state = PlayerState.Running;
     void Start() {
         lanePos = new float[3];
@@ -34,10 +37,14 @@ public class PlayerController : MonoBehaviour {
 
         // inicia o player centralizado
         targetPos = new Vector3(lanePos[currLane], transform.position.y, transform.position.z);
+
+        animator = GetComponentInChildren<Animator>();
+        animator.SetBool("IsGameStarted", true);
     }
 
     void Update() {
         ProcessInput();
+        ProcessAnimations();
     }
 
     void FixedUpdate() {
@@ -60,11 +67,11 @@ public class PlayerController : MonoBehaviour {
 
         // Pulo
         if (isGrounded && (Keyboard.current.wKey.wasPressedThisFrame || Keyboard.current.upArrowKey.wasPressedThisFrame)) {
-            Debug.Log("Jump");
+            //Debug.Log("Jump");
             vVelocity = Mathf.Sqrt(jumpForce * -2f * gravity);
             isGrounded = false;
             state = PlayerState.Jumping;
-            Debug.Log("State = " + state);
+            //Debug.Log("State = " + state);
         }
 
         // Cancelamento do pulo (fast fall)
@@ -72,6 +79,12 @@ public class PlayerController : MonoBehaviour {
             if (vVelocity != 0) {
                 vVelocity = gravity;
             }
+            state = PlayerState.Rolling;
+        }
+
+        // Rolamento no chao
+        if (isGrounded && (Keyboard.current.sKey.wasPressedThisFrame || Keyboard.current.downArrowKey.wasPressedThisFrame)) {
+            //TODO: Alterar collider
             state = PlayerState.Rolling;
         }
     }
@@ -99,5 +112,22 @@ public class PlayerController : MonoBehaviour {
         }
 
         transform.position = newPosition;
+    }
+
+    void ProcessAnimations() {
+        if (state == PlayerState.Running) {
+            animator.SetBool("IsJumping", false);
+            animator.SetBool("IsRolling", false);
+        }
+
+        if (state == PlayerState.Jumping) {
+            animator.SetBool("IsJumping", true);
+            animator.SetBool("IsRolling", false);
+        }
+
+        if (state == PlayerState.Rolling) {
+            animator.SetBool("IsJumping", false);
+            animator.SetBool("IsRolling", true);
+        }
     }
 }
