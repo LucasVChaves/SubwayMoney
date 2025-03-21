@@ -58,10 +58,13 @@ public class TrainSpawner : MonoBehaviour {
             GameObject train = new GameObject();
             int trainToSpawn = Random.Range(0, trainPrefabs.Length);
             // Por algum motivo o modelo da locotimotiva sozinha ta girado todo erradoe eu nao consigo desvirar, tentei ate fazer no blender e re-exportar e nao funcionou
-            if (trainToSpawn != 3) {
-                train = Instantiate(trainPrefabs[trainToSpawn], spawnPosition, Quaternion.Euler(0, trainRotation, 0));
-            } else {
+            if (trainToSpawn == 3) {
                 train = Instantiate(trainPrefabs[trainToSpawn], spawnPosition, Quaternion.Euler(-trainRotation, trainRotation*2, 0));
+                
+            } else if (trainToSpawn == 4) {
+                train = Instantiate(trainPrefabs[trainToSpawn], spawnPosition, Quaternion.Euler(0, 0, 0));
+            } else {
+                train = Instantiate(trainPrefabs[trainToSpawn], spawnPosition, Quaternion.Euler(0, trainRotation, 0));
             }
             
             if (train == null) {

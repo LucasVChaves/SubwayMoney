@@ -1,7 +1,8 @@
 fileFormatVersion: 2
-guid: 0f50703abc621e54f948ddc5bb146f25
-PrefabImporter:
+guid: 7943be8f14bf620439377a61014df5d4
+NativeFormatImporter:
   externalObjects: {}
+  mainObjectFileID: 2100000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
@@ -10,5 +11,5 @@ AssetOrigin:
   productId: 207743
   packageName: Pirate Coin
   packageVersion: 1.0
-  assetPath: Assets/DavePixel/PirateCoin/Prefabs/PirateCoin (Silver).prefab
+  assetPath: Assets/DavePixel/PirateCoin/Materials/Silver.mat
   uploadId: 467011
