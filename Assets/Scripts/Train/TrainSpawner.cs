@@ -2,12 +2,13 @@ using UnityEngine;
 
 public class TrainSpawner : MonoBehaviour {
     [Header("Train Spawn Settings")]
-    public GameObject trainPrefab;
+    public GameObject[] trainPrefabs;
     public float spawnInterval = 3f;
     public float spawnZ = 20f;
     public float minX = -3f;
     public float maxX = 3f;
     public float trainSpeed = 15f;
+    // Fiz todos os prefabs de ré e assim eh mais facil doq girar todos
     public float trainRotation = 90f;
 
     [Header("Coin Settings")]
@@ -21,8 +22,8 @@ public class TrainSpawner : MonoBehaviour {
     private bool isInitialized = false;
 
     void Start() {
-        if (trainPrefab == null) {
-            Debug.LogError("Train prefab is not assigned to TrainSpawner!");
+        if (trainPrefabs == null) {
+            Debug.LogError("Train prefabs are not assigned to TrainSpawner!");
             enabled = false;
             return;
         }
@@ -42,7 +43,7 @@ public class TrainSpawner : MonoBehaviour {
     }
 
     void SpawnTrain() {
-        if (trainPrefab == null) {
+        if (trainPrefabs == null) {
             Debug.LogError("Train prefab is missing!");
             enabled = false;
             return;
@@ -53,8 +54,16 @@ public class TrainSpawner : MonoBehaviour {
             float xPos = lane * 3f - 3f;
 
             Vector3 spawnPosition = new Vector3(xPos, 0f, spawnZ);
+
+            GameObject train = new GameObject();
+            int trainToSpawn = Random.Range(0, trainPrefabs.Length);
+            // Por algum motivo o modelo da locotimotiva sozinha ta girado todo erradoe eu nao consigo desvirar, tentei ate fazer no blender e re-exportar e nao funcionou
+            if (trainToSpawn != 3) {
+                train = Instantiate(trainPrefabs[trainToSpawn], spawnPosition, Quaternion.Euler(0, trainRotation, 0));
+            } else {
+                train = Instantiate(trainPrefabs[trainToSpawn], spawnPosition, Quaternion.Euler(-trainRotation, trainRotation*2, 0));
+            }
             
-            GameObject train = Instantiate(trainPrefab, spawnPosition, Quaternion.Euler(0, trainRotation, 0));
             if (train == null) {
                 Debug.LogError("Failed to instantiate train!");
                 return;

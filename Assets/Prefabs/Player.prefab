@@ -1828,6 +1828,7 @@ GameObject:
   - component: {fileID: 7132248860380709106}
   - component: {fileID: 260285311373825107}
   - component: {fileID: 526095958372144076}
+  - component: {fileID: 1590650124144171986}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1843,13 +1844,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3664637132070461435}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.30070576, y: 0, z: 0, w: 0.953717}
-  m_LocalPosition: {x: 0, y: 3.5, z: -7}
+  m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
+  m_LocalPosition: {x: 0, y: 5, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2110031000005735339}
-  m_LocalEulerAnglesHint: {x: 35, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
 --- !u!114 &7132248860380709106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1864,7 +1865,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 413848}
   smoothSpeed: 0.125
-  offset: {x: 0, y: 3.5, z: -7}
+  offset: {x: 0, y: 5, z: -7}
+  rotation: {x: 15, y: 0, z: 0}
 --- !u!20 &260285311373825107
 Camera:
   m_ObjectHideFlags: 0
@@ -1924,6 +1926,15 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3664637132070461435}
   m_Enabled: 1
+--- !u!45 &1590650124144171986
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3664637132070461435}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: 40fa5696077438a49bbce1aac01eba84, type: 2}
 --- !u!1 &3759766317161062891
 GameObject:
   m_ObjectHideFlags: 0
