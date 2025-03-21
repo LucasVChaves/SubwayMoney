@@ -18,6 +18,10 @@ public class TrainSpawner : MonoBehaviour {
     public float coinSpacing = 1f;
     public int maxCoinsPerTrain = 3;
 
+    [Header("Audio")]
+    public AudioClip[] trainSfx;
+    public float sfxVolume = 0.75f;
+
     private float nextSpawnTime;
     private bool isInitialized = false;
 
@@ -81,6 +85,12 @@ public class TrainSpawner : MonoBehaviour {
                 Debug.Log("Added TrainMovement component to train");
             }
             
+            AudioSource trainAudioSrc = train.GetComponent<AudioSource>();
+            if (trainAudioSrc == null) trainAudioSrc = train.AddComponent<AudioSource>();
+            int randTrainSfx = Random.Range(0, trainSfx.Length);
+            trainAudioSrc.clip = trainSfx[randTrainSfx];
+            trainAudioSrc.volume = sfxVolume;
+            trainAudioSrc.Play();
 
             trainMovement.speed = trainSpeed;
             trainMovement.trainHeight = 1f;
