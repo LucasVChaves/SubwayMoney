@@ -1,10 +1,10 @@
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class UIManager : MonoBehaviour {
     [Header("UI Elements")]
-    public Text scoreText;
-    public Text healthText;
+    public TMP_Text scoreText;
+    public TMP_Text healthText;
     
     private int score = 0;
     private const int POINTS_PER_COIN = 10;
@@ -25,13 +25,13 @@ public class UIManager : MonoBehaviour {
 
     private void UpdateScoreUI() {
         if (scoreText != null) {
-            scoreText.text = $"Score: {score}";
+            scoreText.text = $"SCORE: {score}";
         }
     }
 
     private void UpdateHealthUI(int health) {
         if (healthText != null) {
-            healthText.text = $"Health: {health}";
+            healthText.text = $"HEALTH: {health}";
         }
     }
 } 
