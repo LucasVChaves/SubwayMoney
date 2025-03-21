@@ -5,6 +5,8 @@ Trabalho da disciplina de Desenvolvimento de Jogos (DCC148)
 
 Jogo baseado num pseudo-jogo de casino estilo tigrinho que na verdade era golpe. Virou meme um tempo atrás.
 
+Alunos: Lucas Cristovao Chaves e Andre Luiz Oliveira
+
 ## Controles
 
 - `AD` - Movimentação Lateral.
